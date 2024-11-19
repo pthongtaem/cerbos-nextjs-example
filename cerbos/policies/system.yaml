@@ -1,0 +1,13 @@
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: default
+  resource: system
+  rules:
+    - actions:
+        - access
+      effect: EFFECT_ALLOW
+      roles:
+        - "*"
+      condition:
+        match:
+          expr: request.principal.roles.exists(r, r in request.resource.attr.allowed_roles)

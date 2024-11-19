@@ -1,0 +1,19 @@
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  resource: management_report_menu
+  version: default
+  rules:
+    - actions:
+        - access
+      effect: EFFECT_ALLOW
+      roles:
+        - "*"
+      condition:
+        match:
+          expr: request.principal.attr.management_report_allow.exists(r, r in request.resource.attr.allowed_menu)
+
+    - actions:
+        - access
+      effect: EFFECT_ALLOW
+      roles:
+        - "god"
